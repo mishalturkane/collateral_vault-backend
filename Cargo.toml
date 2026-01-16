@@ -1,20 +1,38 @@
 [package]
-name = "vault-backend"
-version = "0.1.0"
+name = "collateral-vault-backend"
+version = "1.0.0"
 edition = "2021"
 
 [dependencies]
+axum = { version = "0.7", features = ["macros"] }
 tokio = { version = "1.0", features = ["full"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+dotenv = "0.15"
 solana-client = "1.17"
 solana-sdk = "1.17"
 anchor-client = "0.29"
 anchor-lang = "0.29"
-sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-native-tls", "macros"] }
-warp = "0.3"
-futures = "0.3"
+anchor-spl = "0.29"
+anchor-spl-token = "0.29"
+bs58 = "0.5"
+hex = "0.4"
 thiserror = "1.0"
-log = "0.4"
-env_logger = "0.10"
-dotenv = "0.15"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+anyhow = "1.0"
+validator = { version = "0.16", features = ["derive"] }
+redis = { version = "0.23", features = ["cluster", "connection-manager"] }
+reqwest = { version = "0.11", features = ["json"] }
+futures = "0.3"
+
+[dev-dependencies]
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "macros", "migrate"] }
+wiremock = "0.5"
+testcontainers = "0.15"
+testcontainers-modules = "0.1"
